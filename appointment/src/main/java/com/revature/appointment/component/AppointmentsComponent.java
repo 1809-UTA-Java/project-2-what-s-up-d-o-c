@@ -1,5 +1,7 @@
 package com.revature.appointment.component;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +21,12 @@ public class AppointmentsComponent {
 		this.appointmentsRepository = appointmentsRepository;
 	}
 	
-	public Appointment getAppointment(long patientID) {
-		return appointmentsRepository.findByPatientID(patientID);
+	public ArrayList<Appointment> getAppointment(long patientID) {
+		return appointmentsRepository.findAllByPatientID(patientID);
 	}
-	
+
+//	public Appointment saveAppointment() {
+//		return appointmentsRepository.save(arg0);
+//	}
+//	
 }
