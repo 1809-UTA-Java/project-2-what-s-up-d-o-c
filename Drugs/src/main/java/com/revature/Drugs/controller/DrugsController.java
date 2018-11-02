@@ -17,10 +17,10 @@ public class DrugsController {
 	@Autowired
 	DrugsDAO dao;
 	
-	@GetMapping("/{name}")
-	public Drugs getByName(@PathVariable("name") String name) {
-		return dao.findByName(name);
-	}
+//	@GetMapping("/{name}")
+//	public Drugs getByName(@RequestParam(value="name") String name) {
+//		return dao.findByName(name);
+//	}
 	
 	@GetMapping("/{id}")
 	public Drugs getById(@PathVariable("id") int id) {
