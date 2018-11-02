@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "DOC_APPOINTMENTS")
 public class Appointment {
@@ -27,6 +29,7 @@ public class Appointment {
 	long doctorID;
 	
 	@Column(name = "DATEANDTIME")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "E, dd MMM yyyy HH:mm:ss z", timezone = "GMT+8")
 	Timestamp dateAndTime;
 
 	public Appointment() {

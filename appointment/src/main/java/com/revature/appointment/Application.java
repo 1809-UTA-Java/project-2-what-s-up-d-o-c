@@ -36,6 +36,7 @@ public class Application {
 				List<Appointment> apps = mapper.readValue(inputStream,typeReference);
 				appointmentsRepository.save(apps);
 				System.out.println("Appointments Saved!");
+				inputStream.close();
 			} catch (IOException e){
 				System.out.println("Unable to save apps: " + e.getMessage());
 			}
