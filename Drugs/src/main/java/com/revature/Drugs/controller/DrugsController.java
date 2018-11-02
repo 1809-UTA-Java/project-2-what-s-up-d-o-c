@@ -1,5 +1,7 @@
 package com.revature.Drugs.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,8 +19,13 @@ public class DrugsController {
 	@Autowired
 	DrugsDAO dao;
 	
+	@GetMapping("/")
+	public List<Drugs> getAll() {
+		return dao.findAll();
+	}
+	
 //	@GetMapping("/{name}")
-//	public Drugs getByName(@RequestParam(value="name") String name) {
+//	public Drugs getByName(@PathVariable("name") String name) {
 //		return dao.findByName(name);
 //	}
 	
