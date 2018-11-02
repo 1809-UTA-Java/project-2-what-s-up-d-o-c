@@ -12,8 +12,8 @@ import javax.persistence.Table;
 public class Drugs {
 
 	@Id
-	@SequenceGenerator(name = "seq", sequenceName = "drugs_seq")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+	@SequenceGenerator(name = "seq", sequenceName = "drugs_seq", allocationSize=1)
 	int id;
 
 	String name;
