@@ -4,9 +4,9 @@ create table genders (
     g_gender varchar2(50) unique
 );
 
-insert into genders values (001, 'MALE');
-insert into genders values (002, 'FEMALE');
-insert into genders values (003, 'OTHER');
+insert into genders values (1, 'MALE');
+insert into genders values (2, 'FEMALE');
+insert into genders values (3, 'OTHER');
 
 -- create and populate blood_types table
 create table blood_types (
@@ -14,14 +14,14 @@ create table blood_types (
     bt_blood_type varchar2(50) unique
 );
 
-insert into blood_types values (001, 'O_NEGATIVE');
-insert into blood_types values (002, 'O_POSITIVE');
-insert into blood_types values (003, 'A_NEGATIVE');
-insert into blood_types values (004, 'A_POSITIVE');
-insert into blood_types values (005, 'B_NEGATIVE');
-insert into blood_types values (006, 'B_POSITIVE');
-insert into blood_types values (007, 'AB_NEGATIVE');
-insert into blood_types values (008, 'AB_POSITIVE');
+insert into blood_types values (1, 'O_NEGATIVE');
+insert into blood_types values (2, 'O_POSITIVE');
+insert into blood_types values (3, 'A_NEGATIVE');
+insert into blood_types values (4, 'A_POSITIVE');
+insert into blood_types values (5, 'B_NEGATIVE');
+insert into blood_types values (6, 'B_POSITIVE');
+insert into blood_types values (7, 'AB_NEGATIVE');
+insert into blood_types values (8, 'AB_POSITIVE');
 
 -- create and populate conditions table
 create table conditions (
@@ -29,10 +29,11 @@ create table conditions (
     c_condition varchar2(100)
 );
 
-insert into conditions values (001, 'ALLERGIES');
-insert into conditions values (002, 'DIABETES');
-insert into conditions values (003, 'MISSING LIMB');
-insert into conditions values (004, 'STRESSED');
+insert into conditions values (1, 'NONE');
+insert into conditions values (2, 'ALLERGIES');
+insert into conditions values (3, 'DIABETES');
+insert into conditions values (4, 'MISSING LIMB');
+insert into conditions values (5, 'STRESSED');
 
 -- create patients table
 create table patients (
@@ -57,8 +58,8 @@ nocycle ;
 
 
 insert all
-    into patients (p_id, p_firstname, p_lastname) values (1, 'tim', 'dim')
-    into patients (p_id, p_firstname, p_lastname) values (2, 'su', 'ean')
+    into patients values (1, 'tim', 'dee', 100, 100, to_date('01012007','MMDDYYYY'), 1, 2, 1)
+    into patients values (2, 'su', 'ean', 100, 100, to_date('01012007','MMDDYYYY'), 2, 2, 1)
 select * from dual;
 
 commit;
