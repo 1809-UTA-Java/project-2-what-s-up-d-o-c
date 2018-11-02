@@ -50,7 +50,7 @@ create table patients (
 
 -- create sequence for generating patient id
 create sequence patient_sequence
-start with 0
+start with 3
 increment by 1
 minvalue 000000
 maxvalue 999999
