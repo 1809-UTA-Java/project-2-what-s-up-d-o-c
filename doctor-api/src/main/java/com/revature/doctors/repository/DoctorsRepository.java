@@ -1,9 +1,13 @@
 package com.revature.doctors.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.doctors.entities.Doctor;
 
-public interface DoctorsRepository extends JpaRepository<Doctor, Long>{
-	Doctor findDoctorById(Long id);
+@Repository
+@Transactional
+public interface DoctorsRepository extends JpaRepository<Doctor, Integer>{
+	Doctor findDoctorById(Integer id);
 }

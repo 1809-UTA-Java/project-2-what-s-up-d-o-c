@@ -13,32 +13,41 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+
 @Entity
 @Table (name = "DOCTORS")
+/*@SecondaryTables({
+	@SecondaryTable(name="NAMES", pkJoinColumns={
+			@PrimaryKeyJoinColumn(name="NAME_ID", referencedColumnName="DOCTOR_ID") }),
+	@SecondaryTable(name="SPECIALTIES", pkJoinColumns={
+			@PrimaryKeyJoinColumn(name="SPECIALTY_ID", referencedColumnName="DOCTOR_ID") })
+	})*/
 public class Doctor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "D_Sequence")
 	@SequenceGenerator(name = "D_Sequence", sequenceName = "D_Sequence")
 	@Column(name="DOCTOR_ID")
-	private Long id;
+	private Integer id;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "NAME")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "NAME", referencedColumnName = "NAME_ID")
+	//@JsonUnwrapped
 	private Name name;
 	
 	@Column(name = "DATE_OF_BIRTH")
 	private Date DOB;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "SPECIALTY")
-	private Specialty speciality;
 
-	public Doctor(Long id, Name name, Date dOB, Specialty speciality) {
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "SPECIALTY", referencedColumnName = "SPECIALTY_ID")
+	//@JsonUnwrapped
+	private Specialty specialty;
+
+	public Doctor(Name name, Date dOB, Specialty specialty) {
 		super();
-		this.id = id;
 		this.name = name;
 		DOB = dOB;
-		this.speciality = speciality;
+		this.specialty = specialty;
 	}
 
 	public Doctor() {
@@ -46,11 +55,11 @@ public class Doctor {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -70,13 +79,17 @@ public class Doctor {
 		DOB = dOB;
 	}
 
-	public Specialty getSpeciality() {
-		return speciality;
+	public Specialty getSpecialty() {
+		return specialty;
 	}
 
-	public void setSpeciality(Specialty speciality) {
-		this.speciality = speciality;
+	public void setSpeciality(Specialty specialty) {
+		this.specialty = specialty;
 	}
 	
+	@Override
+	public String toString() {
+		return "Doctor [id=" + id + ", name=" + name + ", DOB=" + DOB + ", specialty=" + specialty + "]";
+	}
 	
 }

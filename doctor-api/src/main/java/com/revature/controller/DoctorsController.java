@@ -22,7 +22,8 @@ public class DoctorsController {
 	}
 
 	@GetMapping()
-	Doctor getDoctor(@RequestParam(value="doctor") Long doctorId){
+	Doctor getDoctor(@RequestParam(value="doctor") Integer doctorId){
 		return doctorsComponent.getDoctor(doctorId);
+
 	}
 }

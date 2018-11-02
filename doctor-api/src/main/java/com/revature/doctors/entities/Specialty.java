@@ -19,5 +19,31 @@ public class Specialty {
 	
 	@Column(name = "SPECIALTY_NAME")
 	private String specialty;
+
+	@Override
+	public String toString() {
+		return "Specialty [id=" + id + ", specialty=" + specialty + "]";
+	}
+	//API dev cycle
+	//RAML
+
+	public Specialty(Long id, String specialty) {
+		super();
+		this.id = id;
+		this.specialty = specialty;
+	}
+
+	public Specialty() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getSpecialty() {
+		return specialty;
+	}
+
+	public void setSpecialty(String specialty) {
+		this.specialty = specialty;
+	}
 	
 }

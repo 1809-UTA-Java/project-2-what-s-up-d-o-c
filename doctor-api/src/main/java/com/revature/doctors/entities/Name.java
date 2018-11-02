@@ -8,24 +8,68 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 @Entity
 @Table(name = "NAMES")
 public class Name {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "N_Sequence")
 	@SequenceGenerator(name = "N_Sequence", sequenceName = "N_Sequence")
 	@Column(name = "NAME_ID")
 	private Long id;
-	
+
 	@Column(name = "FIRST_NAME")
 	private String firstName;
-	
+
 	@Column(name = "MIDDLE_NAME")
 	private String middleName;
-	
+
 	@Column(name = "LAST_NAME")
 	private String lastName;
-	
+
+	@Override
+	public String toString() {
+		return "Name [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
+				+ "]";
+	}
+
+	public Name(Long id, String firstName, String middleName, String lastName) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.middleName = middleName;
+		this.lastName = lastName;
+	}
+
+	public Name() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 	
 }
