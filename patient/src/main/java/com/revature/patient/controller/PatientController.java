@@ -31,12 +31,12 @@ public class PatientController {
 	@Autowired
 	ConditionDao cdao;
 	
-	@RequestMapping("/patients")
+	@ModelAttribute("patients")
 	public List<Patient> getAll() {
 		return dao.findAll(); 
 	}
 	
-	@RequestMapping("patients/{id}")
+	@ModelAttribute("patients/{id}")
 	public Patient getById(@PathVariable("id") int id) {
 		return dao.findById(id);
 	}

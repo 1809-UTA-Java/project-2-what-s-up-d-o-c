@@ -3,7 +3,6 @@ package com.revature.patient.model;
 import java.sql.Date;
 
 public class PatientForm {
-	private int id;
 	private String firstName;
 	private String lastName;
 	private Date dob;
@@ -13,10 +12,9 @@ public class PatientForm {
 	private String bloodType;
 	private String preExistingCondition;
 
-	public PatientForm(int id, String firstName, String lastName, Date dob, double height, double weight, String gender,
+	public PatientForm(String firstName, String lastName, Date dob, double height, double weight, String gender,
 			String bloodType, String preExistingCondition) {
 		super();
-		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dob = dob;
@@ -30,14 +28,6 @@ public class PatientForm {
 	public PatientForm() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -103,4 +93,5 @@ public class PatientForm {
 	public void setPreExistingCondition(String preExistingCondition) {
 		this.preExistingCondition = preExistingCondition;
 	}
+
 }
