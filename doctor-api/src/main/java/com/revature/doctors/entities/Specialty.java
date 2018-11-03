@@ -12,8 +12,6 @@ import javax.persistence.Table;
 @Table(name = "SPECIALTIES")
 public class Specialty {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "S_Sequence")
-	@SequenceGenerator(name = "S_Sequence", sequenceName = "S_Sequence")
 	@Column(name = "SPECIALTY_ID")
 	private Long id;
 	
@@ -31,6 +29,14 @@ public class Specialty {
 		super();
 		this.id = id;
 		this.specialty = specialty;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Specialty() {

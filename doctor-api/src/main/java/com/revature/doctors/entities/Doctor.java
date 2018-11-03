@@ -2,6 +2,7 @@ package com.revature.doctors.entities;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 @Entity
 @Table (name = "DOCTORS")
@@ -26,11 +25,11 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 public class Doctor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "D_Sequence")
-	@SequenceGenerator(name = "D_Sequence", sequenceName = "D_Sequence")
+	@SequenceGenerator(name = "D_Sequence", sequenceName = "D_Sequence", allocationSize=1)
 	@Column(name="DOCTOR_ID")
 	private Integer id;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
 	@JoinColumn(name = "NAME", referencedColumnName = "NAME_ID")
 	//@JsonUnwrapped
 	private Name name;
@@ -38,7 +37,7 @@ public class Doctor {
 	@Column(name = "DATE_OF_BIRTH")
 	private Date DOB;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
 	@JoinColumn(name = "SPECIALTY", referencedColumnName = "SPECIALTY_ID")
 	//@JsonUnwrapped
 	private Specialty specialty;

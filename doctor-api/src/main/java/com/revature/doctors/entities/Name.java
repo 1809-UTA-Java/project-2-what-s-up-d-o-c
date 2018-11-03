@@ -15,8 +15,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public class Name {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "N_Sequence")
-	@SequenceGenerator(name = "N_Sequence", sequenceName = "N_Sequence")
 	@Column(name = "NAME_ID")
 	private Long id;
 
@@ -46,6 +44,14 @@ public class Name {
 	public Name() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
