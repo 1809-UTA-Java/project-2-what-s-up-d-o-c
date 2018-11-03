@@ -1,0 +1,14 @@
+
+ INSERT ALL 
+	INTO DRUGS VALUES (1, 'Vicodin', 'Pain management', 200)
+	INTO DRUGS VALUES (2, 'Synthroid', 'Thyroid deficiency', 50)
+	INTO DRUGS VALUES (3, 'Delasone', 'Arthritis', 50)
+	INTO DRUGS VALUES (4, 'Amoxil', 'Bacterial infections', 100)
+	INTO DRUGS VALUES (5, 'Neurontin', 'Seizures, nerve pain', 100)
+	INTO DRUGS VALUES (6, 'Prinivil', 'Blood pressure, heart failure', 150)
+	INTO DRUGS VALUES (7, 'Lipitor', 'High cholesterol', 150)
+	INTO DRUGS VALUES (8, 'Glucophage', 'Type 2 Diabetes', 125)
+	INTO DRUGS VALUES (9, 'Zofran', 'Nausea', 150)
+	INTO DRUGS VALUES (10, 'Motrin', 'Fever and inflammation', 200)
+SELECT * FROM dual;
+	
