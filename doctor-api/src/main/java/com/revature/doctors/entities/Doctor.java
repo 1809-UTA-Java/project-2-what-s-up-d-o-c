@@ -16,12 +16,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name = "DOCTORS")
-/*@SecondaryTables({
-	@SecondaryTable(name="NAMES", pkJoinColumns={
-			@PrimaryKeyJoinColumn(name="NAME_ID", referencedColumnName="DOCTOR_ID") }),
-	@SecondaryTable(name="SPECIALTIES", pkJoinColumns={
-			@PrimaryKeyJoinColumn(name="SPECIALTY_ID", referencedColumnName="DOCTOR_ID") })
-	})*/
 public class Doctor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "D_Sequence")
@@ -29,29 +23,33 @@ public class Doctor {
 	@Column(name="DOCTOR_ID")
 	private Integer id;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-	@JoinColumn(name = "NAME", referencedColumnName = "NAME_ID")
-	//@JsonUnwrapped
-	private Name name;
+	@Column(name="FIRST_NAME")
+	private String firstName;
+	
+	@Column(name="MIDDLE_NAME")
+	private String middleName;
+	
+	@Column(name="LAST_NAME")
+	private String lastName;
 	
 	@Column(name = "DATE_OF_BIRTH")
 	private Date DOB;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-	@JoinColumn(name = "SPECIALTY", referencedColumnName = "SPECIALTY_ID")
-	//@JsonUnwrapped
-	private Specialty specialty;
-
-	public Doctor(Name name, Date dOB, Specialty specialty) {
-		super();
-		this.name = name;
-		DOB = dOB;
-		this.specialty = specialty;
-	}
+	@Column(name = "SPECIALTY_NAME")
+	private String specialty;
 
 	public Doctor() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Doctor(String firstName, String middleName, String lastName, Date dOB, String specialty) {
+		super();
+		this.firstName = firstName;
+		this.middleName = middleName;
+		this.lastName = lastName;
+		DOB = dOB;
+		this.specialty = specialty;
 	}
 
 	public Integer getId() {
@@ -62,12 +60,28 @@ public class Doctor {
 		this.id = id;
 	}
 
-	public Name getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(Name name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public Date getDOB() {
@@ -78,17 +92,13 @@ public class Doctor {
 		DOB = dOB;
 	}
 
-	public Specialty getSpecialty() {
+	public String getSpecialty() {
 		return specialty;
 	}
 
-	public void setSpeciality(Specialty specialty) {
+	public void setSpecialty(String specialty) {
 		this.specialty = specialty;
 	}
 	
-	@Override
-	public String toString() {
-		return "Doctor [id=" + id + ", name=" + name + ", DOB=" + DOB + ", specialty=" + specialty + "]";
-	}
 	
 }
