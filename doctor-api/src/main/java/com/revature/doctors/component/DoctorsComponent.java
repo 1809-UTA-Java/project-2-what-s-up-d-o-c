@@ -23,7 +23,6 @@ public class DoctorsComponent {
 
 	public Doctor getDoctor(Integer doctorId) {
 		logger.info("Looking for doctor id: " + doctorId);
-		logger.info(doctorsRepository.findDoctorById(doctorId).toString());
 		return doctorsRepository.findDoctorById(doctorId);
 	}
 }
