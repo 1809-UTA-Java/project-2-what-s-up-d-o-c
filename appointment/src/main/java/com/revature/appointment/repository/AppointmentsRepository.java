@@ -11,4 +11,5 @@ import com.revature.appointment.entity.Appointment;
 public interface AppointmentsRepository extends JpaRepository<Appointment,Long> {
 	
 	ArrayList<Appointment> findAllByPatientID(long patientID);
+	ArrayList<Appointment> findAllByDoctorID(long doctorID);
 }

@@ -22,13 +22,15 @@ public class AppointmentsController {
 		this.appointmentsComponent = appointmentsComponent;
 	}
 	
-	@RequestMapping("/get/{id}")
-	ArrayList<Appointment> getAppointment(@PathVariable ("id") long patientID) {
-		return appointmentsComponent.getAppointment(patientID);
+	@RequestMapping("/getPatientApps/{id}")
+	ArrayList<Appointment> getAppointmentbyPatient(@PathVariable ("id") long patientID) {
+		return appointmentsComponent.getAppointmentbyPatient(patientID);
 	}
 	
-//	@RequestMapping("/save")
-//	void saveAppointment() {
-//		return appointmentsComponent.saveAppointment();
-//	}
+	@RequestMapping("/getDoctorApps/{id}")
+	ArrayList<Appointment> getAppointmentbyDoctor(@PathVariable ("id") long doctorID) {
+		return appointmentsComponent.getAppointmentbyDoctor(doctorID);
+	}
+	
+
 }

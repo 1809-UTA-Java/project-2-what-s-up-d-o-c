@@ -21,12 +21,12 @@ public class AppointmentsComponent {
 		this.appointmentsRepository = appointmentsRepository;
 	}
 	
-	public ArrayList<Appointment> getAppointment(long patientID) {
+	public ArrayList<Appointment> getAppointmentbyPatient(long patientID) {
 		return appointmentsRepository.findAllByPatientID(patientID);
 	}
 
-//	public Appointment saveAppointment() {
-//		return appointmentsRepository.save(arg0);
-//	}
-//	
+	public ArrayList<Appointment> getAppointmentbyDoctor(long doctorID) {
+		return appointmentsRepository.findAllByDoctorID(doctorID);
+	}
+
 }
