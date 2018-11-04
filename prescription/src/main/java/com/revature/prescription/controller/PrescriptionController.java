@@ -25,6 +25,6 @@ public class PrescriptionController {
 	
 	@ModelAttribute("prescription/{id}")
 	public Prescription getById(@PathVariable("id") long id){
-		return dao.findByID(id);
+		return dao.findByPrescriptionID(id);
 	}
 }
