@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>Doctor ID</td>
+			<td>Patient ID</td>
+			<td>Drug</td>
+			<td>Amount</td>
+		</tr>
+		<tr th:each="prescription: ${prescriptions}">
+			<td th:text="${prescription.presciptionID}}" />
+			<td th:text="${prescription.doctorID}}" />
+			<td th:text="${prescription.patientID}" />
+			<td th:text="${prescription.drugID}" />
+			<td th:text=${prescription.amount} "/>
+		</tr>
+	</table>
+
+	<br>
+	<br>
+
+	<form action="#" th:action="" th:object="" method="post">
+		<p>
+			Prescription ID: <select th:field="*{precriptionID}">
+			<option th:each=" prescription : ${prescriptions}"
+					th:value="${prescriptionID}"
+					th:text="${prescriptionID}"/>
+			</select> 
+			
+			<input type="number" value="Picked up" />
+	</form>
+
+</body>
+</html>
