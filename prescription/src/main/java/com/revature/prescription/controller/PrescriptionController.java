@@ -30,6 +30,16 @@ public class PrescriptionController {
 		return dao.findByPrescriptionID(id);
 	}
 	
+	@GetMapping("/prescription/doctor/{id}")
+	public Prescription getByDoctorId(@PathVariable("id") long id){
+		return dao.findByDoctorPrescriptionID(id);
+	}
+	
+	@GetMapping("/prescription/patient/{id}")
+	public Prescription getByPatientId(@PathVariable("id") long id){
+		return dao.findByPatientPrescriptionID(id);
+	}
+	
 	@ModelAttribute("/prescription/{id}/Approve")
 	public boolean approvePrescription(@PathVariable("id") long id){
 		Prescription found = dao.findByPrescriptionID(id);
