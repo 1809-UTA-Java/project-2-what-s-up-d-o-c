@@ -24,10 +24,10 @@ public class Appointment {
 
 	@Column(name = "PATIENT_ID")
 	long patientID;
-	
+
 	@Column(name = "DOCTOR_ID")
 	long doctorID;
-	
+
 	@Column(name = "DATEANDTIME")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "E, dd MMM yyyy HH:mm:ss z", timezone = "GMT+8")
 	Timestamp dateAndTime;
