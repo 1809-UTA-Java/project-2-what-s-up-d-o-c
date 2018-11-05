@@ -32,12 +32,12 @@ public class PrescriptionController {
 	
 	@GetMapping("/prescription/doctor/{id}")
 	public Prescription getByDoctorId(@PathVariable("id") long id){
-		return dao.findByDoctorPrescriptionID(id);
+		return dao.findByDoctorID(id);
 	}
 	
 	@GetMapping("/prescription/patient/{id}")
 	public Prescription getByPatientId(@PathVariable("id") long id){
-		return dao.findByPatientPrescriptionID(id);
+		return dao.findByPatientID(id);
 	}
 	
 	@ModelAttribute("/prescription/{id}/Approve")

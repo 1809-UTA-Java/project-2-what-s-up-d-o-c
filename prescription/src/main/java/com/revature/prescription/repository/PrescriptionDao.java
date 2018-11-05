@@ -14,7 +14,7 @@ public interface PrescriptionDao extends JpaRepository<Prescription,Long> {
 	
 	ArrayList<Prescription> findAllByStatus(String status);
 
-	Prescription findByDoctorPrescriptionID(long id);
+	Prescription findByDoctorID(long id);
 
-	Prescription findByPatientPrescriptionID(long id);
+	Prescription findByPatientID(long id);
 }
