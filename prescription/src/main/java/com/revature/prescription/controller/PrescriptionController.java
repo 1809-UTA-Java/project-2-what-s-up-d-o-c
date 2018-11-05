@@ -2,6 +2,8 @@ package com.revature.prescription.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -41,9 +43,13 @@ public class PrescriptionController {
 		}
 	}
 	
-	@PostMapping("/prescription/{doctor}/{patient}/{drug}/{ammount}")
-	public Prescription newPrescription(@PathVariable("doctor") long doc, @PathVariable("patient") long pat, @PathVariable("drug") long drug, @PathVariable("ammount") long ammount){
-		Prescription prescription = new Prescription(doc, pat, drug, ammount);
+	@PostMapping("/prescription/submit")
+	public Prescription newPrescription(HttpServletRequest request){
+		Prescription prescription = new Prescription();
+		prescription.setDoctorID(Integer.getInteger(request.getParameter("doctorID")));
+		prescription.setPatientID(Integer.getInteger(request.getParameter("patientID")));
+		prescription.setDrugID(Integer.getInteger(request.getParameter("drugID")));
+		prescription.setAmmount(Integer.getInteger(request.getParameter("ammount")));
 		dao.save(prescription);
 		return prescription;
 	}

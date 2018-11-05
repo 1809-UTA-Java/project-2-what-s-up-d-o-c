@@ -35,6 +35,10 @@ public class Prescription {
 		this.status = "Prescribed";
 	}
 
+	public Prescription() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Column(name = "DRUGS_ID")
 	long drugID;
 	
