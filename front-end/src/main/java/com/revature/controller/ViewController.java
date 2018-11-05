@@ -28,6 +28,10 @@ public class ViewController {
 		return "patientHomeView";
 	}
 
+	@RequestMapping("/appointmentForm")
+	public String appointmentForm() {
+		return "createAppointment";
+	}
 	// @RequestMapping("/patient/{id}/viewAppointments")
 	// public String patientAppointmetns(Model model, @PathVariable("id") int
 	// id) {
@@ -73,8 +77,8 @@ public class ViewController {
 	// return
 	// }
 	
-//	@RequestMapping
-//	public String createPrescription() {
-//		return "createPrescription";
-//	}
+	@RequestMapping("writePrescription")
+	public String createPrescription() {
+		return "createPrescription";
+	}
 }

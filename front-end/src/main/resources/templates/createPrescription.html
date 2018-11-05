@@ -5,29 +5,30 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="#" th:action="@{/8200/appointments}"
-		th:object="${appointment}" method="post">
+	<form action="http://localhost:8056" method="post">
 		<table>
 			<tr>
 				<td>Patient</td>
-				<td><select th:field="*{patientID}">
-						<option th:each="patient : ${patients}" th:value="${patient.id}"
-							th:text="${patient.firstName()} ${patient.lastName()}"></option>
-				</select></td>
+				<td><input type="text"/></td>
 			</tr>
 			<tr>
 				<td>Prescribed Drug</td>
-				<td><select th:field="*{drugID}">
-						<option th:each="drug : ${drugs}"
-							th:value="${drug.id}" th:text="${drug.name}">Wireframe</option>
+				<td><select>
+						<option value="1">Vicodin</option>
+						<option value="2">Synthroid</option>
+						<option value="3">Delasone</option>
+						<option value="4">Amoxil</option>
+						<option value="5">Neurontin</option>
+						<option value="6">Prinivil</option>
+						<option value="7">Lipitor</option>
+						<option value="8">Glucophage</option>
+						<option value="9">Zofran</option>
+						<option value="10">Motrin</option>
 				</select></td>
 			</tr>
 			<tr>
 				<td>Prescribed Amount</td>
 				<td><input type="number" th:field="*{patientID}"/></td>
-			</tr>
-			<tr>
-				<td><input type="text" th:field="*{doctorID} th:value=" ${}" disabled"/></td>
 			</tr>
 		</table>
 		<input type="submit" value="Submit" />
