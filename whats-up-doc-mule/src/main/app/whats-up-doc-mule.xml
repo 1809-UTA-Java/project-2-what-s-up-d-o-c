@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd">
+	<http:listener-config name="HTTP_Listener_Configuration"
+		host="0.0.0.0" port="9000" doc:name="HTTP Listener Configuration" />
+	<http:request-config name="HTTP_Request_Configuration"
+		host="localhost" port="8080" doc:name="HTTP Request Configuration" />
+	<http:request-config name="HTTP_Request_Configuration1"
+		host="localhost" port="8080" doc:name="HTTP Request Configuration" />
+	<http:request-config name="HTTP_Request_Configuration2"
+		host="localhost" port="8200" doc:name="HTTP Request Configuration" />
+	<http:request-config name="HTTP_Request_Configuration3"
+		host="localhost" port="8056" doc:name="HTTP Request Configuration" />
+    <http:request-config name="HTTP_Request_Configuration4" host="localhost" port="9001" doc:name="HTTP Request Configuration"/>
+    <http:listener-config name="HTTP_Listener_Configuration1" host="0.0.0.0" port="8999" doc:name="HTTP Listener Configuration"/>
+    <db:oracle-config name="Oracle_Configuration" host="192.168.56.105" port="1521" instance="xe" user="Rmbmt_User" password="pass" doc:name="Oracle Configuration"/>
+    <http:request-config name="HTTP_Request_Configuration5" host="localhost" port="8200" doc:name="HTTP Request Configuration"/>
+    <http:request-config name="HTTP_Request_Configuration6" host="localhost" port="8080" doc:name="HTTP Request Configuration"/>
+    <http:request-config name="HTTP_Request_Configuration7" host="localhost" port="8080" doc:name="HTTP Request Configuration"/>
+    <http:request-config name="HTTP_Request_Configuration8" host="localhost" port="8080" doc:name="HTTP Request Configuration"/>
+    <http:request-config name="HTTP_Request_Configuration9" host="localhost" port="8080" doc:name="HTTP Request Configuration"/>
+    <http:listener-config name="HTTP_Listener_Configuration2" host="0.0.0.0" port="7999" doc:name="HTTP Listener Configuration"/>
+    <http:request-config name="HTTP_Request_Configuration10" host="localhost" port="8200" doc:name="HTTP Request Configuration"/>
+    <http:request-config name="HTTP_Request_Configuration11" host="localhost" port="8080" doc:name="HTTP Request Configuration"/>
+    <http:request-config name="HTTP_Request_Configuration12" host="localhost" port="8056" doc:name="HTTP Request Configuration"/>
+	<!--<flow name="whats-up-doc-muleFlow"> <http:listener config-ref="HTTP_Listener_Configuration" 
+		path="/" doc:name="HTTP"/> </flow> -->
+	<flow name="Doctor_Flow">
+		<http:listener config-ref="HTTP_Listener_Configuration"
+			path="/" doc:name="HTTP" />
+        <set-session-variable variableName="homePage" value="patientHome" doc:name="Home Page"/>
+        <choice doc:name="Choice">
+            <when expression="#[sessionVars.homePage == 'doctorHome'] ">
+                <http:request config-ref="HTTP_Request_Configuration1" path="/doctorHome" method="GET" doc:name="Doctor Home"/>
+            </when>
+            <when expression="#[sessionVars.homePage == 'patientHome']">
+                <http:request config-ref="HTTP_Request_Configuration9" path="/patientHome" method="GET" doc:name="Patient Home"/>
+            </when>
+        </choice>
+
+	</flow>
+	<flow name="doctor-actions-muleFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration1" path="/" allowedMethods="GET" doc:name="HTTP"/>
+        <set-session-variable variableName="userID" value="21" doc:name="User ID"/>
+        <set-session-variable variableName="pageName" value="#[message.inboundProperties.'http.query.params'.page]" doc:name="Doctor Page Name"/>
+        <logger message="Doctor Page Choice: #[sessionVars.pageName]" level="INFO" doc:name="Logger"/>
+        <choice doc:name="Choice">
+            <when expression="#[sessionVars.pageName == 'ViewAppointments']">
+                <http:request config-ref="HTTP_Request_Configuration5" path="/appointments/getDoctorApps/#[sessionVars.userID]" method="GET" doc:name="Appointments Table Call"/>
+                <http:request config-ref="HTTP_Request_Configuration7" path="/doctor/#[sessionVars.userID]/viewAppointments" method="POST"  doc:name="Appointments HTML" metadata:id="5a30483c-c0f2-4355-9b5e-42042613e046">
+                </http:request>
+            </when>
+            <when expression="#[sessionVars.pageName == 'CreatePrescription']">
+                <http:request config-ref="HTTP_Request_Configuration8" path="/writePrescription" method="GET" doc:name="Create Prescription HTML"/>
+            </when>
+        </choice>
+	</flow>
+    <flow name="patient-actions-muleFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration2" path="/" allowedMethods="GET" doc:name="HTTP"/>
+        <set-session-variable variableName="patientID" value="1" doc:name="Patient ID"/>
+        <set-session-variable variableName="patientPage" value="#[message.inboundProperties.'http.query.params'.page]" doc:name="Patient Home Page"/>
+        <logger message="Patient Page: #[sessionVars.patientPage]" level="INFO" doc:name="Logger"/>
+        <choice doc:name="Choice">
+            <when expression="#[sessionVars.pageName == 'CreateAppointment']">
+                <http:request config-ref="HTTP_Request_Configuration11" path="/appointmentForm" method="GET" doc:name="Create Appointment HTML"/>
+            </when>
+            <when expression="#[sessionVars.pageName == 'ViewPrescriptions']">
+                <http:request config-ref="HTTP_Request_Configuration12" path="" method="" doc:name="Prescriptions Table Call"/>
+                <http:request config-ref="" path="" method="" doc:name="View Prescriptions"/>
+            </when>
+        </choice>
+    </flow>
+
+</mule>
