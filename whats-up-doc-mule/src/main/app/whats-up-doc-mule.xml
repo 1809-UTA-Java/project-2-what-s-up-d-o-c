@@ -129,7 +129,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
 					path="/prescription/patient/#[sessionVars.userID]" method="GET"
 					doc:name="Prescriptions Table Call" />
 				<http:request config-ref="HTTP_Request_Configuration14"
-					path="/prescriptions" method="GET" doc:name="Prescriptions HTML" />
+					path="/new/prescriptions" method="GET, POST" doc:name="Prescriptions HTML" />
 			</when>
             <when expression="#[sessionVars.pageName == 'ViewAppointments']">
                 <flow-ref name="session-varaibles-muleFlow" doc:name="Flow Reference"/>

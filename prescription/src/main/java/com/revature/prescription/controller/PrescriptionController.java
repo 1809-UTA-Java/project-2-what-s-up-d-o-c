@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.prescription.entity.Prescription;
@@ -20,42 +20,24 @@ public class PrescriptionController {
 
 	@Autowired
 	PrescriptionDao dao;
-	
-	@GetMapping("/prescription/Prescribed")
-	public List<Prescription> getPrescribed(){
-		return dao.findAllByStatus("Prescribed");
+
+	@GetMapping("/prescription/id/{id}")
+	public Prescription getPrescription(@PathVariable("id") long id) {
+		return dao.findByPrescriptionID(id);
 	}
-	
-//	@GetMapping("/prescription/{id}")
-//	public Prescription getById(@PathVariable("id") long id){
-//		return dao.findByPrescriptionID(id);
-//	}
-	
+
 	@GetMapping("/prescription/doctor/{id}")
-	public List<Prescription> getByDoctorId(@PathVariable("id") long id){
+	public List<Prescription> getByDoctorId(@PathVariable("id") long id) {
 		return dao.findByDoctorID(id);
 	}
-	
+
 	@GetMapping("/prescription/patient/{id}")
-	public List<Prescription> getByPatientId(@PathVariable("id") long id){
+	public List<Prescription> getByPatientId(@PathVariable("id") long id) {
 		return dao.findByPatientID(id);
 	}
-	
-	@ModelAttribute("/prescription/{id}/Approve")
-	public boolean approvePrescription(@PathVariable("id") long id){
-		Prescription found = dao.findByPrescriptionID(id);
-		if (found == null)
-			return false;
-		else if (found.getStatus() != "Prescribed")
-			return false;
-		else{
-			found.setStatus("Distributed");
-			return true;
-		}
-	}
-	
-	@RequestMapping(value = "/prescription/new/submit", method=RequestMethod.POST)
-	public void newPrescription(HttpServletRequest request){
+
+	@RequestMapping("/prescription/new/submit")
+	public void newPrescription(HttpServletRequest request) {
 		Prescription prescription = new Prescription();
 		prescription.setDoctorID(Long.parseLong(request.getParameter("doctorID")));
 		prescription.setPatientID(Long.parseLong(request.getParameter("patientID")));

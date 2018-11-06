@@ -10,11 +10,9 @@ import com.revature.prescription.entity.Prescription;
 @Repository
 public interface PrescriptionDao extends JpaRepository<Prescription,Long> {
 
-	Prescription findByPrescriptionID(long id);
+	Prescription findByPrescriptionID(long prescriptionID);
 	
-	List<Prescription> findAllByStatus(String status);
+	List<Prescription> findByDoctorID(long doctorID);
 
-	List<Prescription> findByDoctorID(long id);
-
-	List<Prescription> findByPatientID(long id);
+	List<Prescription> findByPatientID(long patientID);
 }

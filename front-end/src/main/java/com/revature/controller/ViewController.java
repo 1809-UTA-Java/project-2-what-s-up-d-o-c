@@ -100,8 +100,8 @@ public class ViewController {
 		}
 	}
 	
-	 @RequestMapping("/presciptions")
-	 public void prescriptions(@RequestBody ArrayList<Prescription> prescriptions, HttpServletResponse resp) {
+	 @RequestMapping("/new/presciptions")
+	 public void prescriptions(@RequestBody ArrayList<Prescription> prescriptions, HttpServletResponse resp, HttpServletRequest req) {
 	 // add prescriptions here
 		 resp.setContentType("text/html");
 

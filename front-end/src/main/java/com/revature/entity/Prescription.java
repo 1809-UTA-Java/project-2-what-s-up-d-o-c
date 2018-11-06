@@ -19,26 +19,22 @@ public class Prescription {
 
 	@Column(name = "PATIENT_ID")
 	long patientID;
-	
+
 	@Column(name = "DOCTOR_ID")
 	long doctorID;
-	
-	@Column(name = "STATUS")
-	String status;
-	
+
 	@Column(name = "DRUGS_ID")
 	long drugID;
-	
+
 	@Column(name = "AMMOUNT")
 	long ammount;
-	
+
 	public Prescription(long patientID, long doctorID, long drugID, long ammount) {
 		super();
 		this.patientID = patientID;
 		this.doctorID = doctorID;
 		this.drugID = drugID;
 		this.ammount = ammount;
-		this.status = "Prescribed";
 	}
 
 	public Prescription() {
@@ -91,11 +87,4 @@ public class Prescription {
 				+ ", drugID=" + drugID + ", ammount=" + ammount + "]";
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
 }
