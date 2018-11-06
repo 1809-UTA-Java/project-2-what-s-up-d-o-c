@@ -25,8 +25,8 @@ public class PrescriptionController {
 		return dao.findAllByStatus("Prescribed");
 	}
 	
-	@GetMapping("/prescription/{id}")
-	public Prescription getById(@PathVariable("id") long id){
+	@GetMapping("/prescription/id/{id}")
+	public Prescription getPrescription(@PathVariable("id") long id){
 		return dao.findByPrescriptionID(id);
 	}
 	
@@ -40,7 +40,7 @@ public class PrescriptionController {
 		return dao.findByPatientID(id);
 	}
 	
-	@ModelAttribute("/prescription/{id}/Approve")
+	@ModelAttribute("/prescription/id/{id}/Approve")
 	public boolean approvePrescription(@PathVariable("id") long id){
 		Prescription found = dao.findByPrescriptionID(id);
 		if (found == null)
@@ -54,13 +54,12 @@ public class PrescriptionController {
 	}
 	
 	@PostMapping("/prescription/submit")
-	public Prescription newPrescription(HttpServletRequest request){
+	public void newPrescription(HttpServletRequest request){
 		Prescription prescription = new Prescription();
-		prescription.setDoctorID(Integer.getInteger(request.getParameter("doctorID")));
-		prescription.setPatientID(Integer.getInteger(request.getParameter("patientID")));
-		prescription.setDrugID(Integer.getInteger(request.getParameter("drugID")));
-		prescription.setAmmount(Integer.getInteger(request.getParameter("ammount")));
+		prescription.setDoctorID(Long.parseLong(request.getParameter("doctorID")));
+		prescription.setPatientID(Long.parseLong(request.getParameter("patientID")));
+		prescription.setDrugID(Long.parseLong(request.getParameter("drugID")));
+		prescription.setAmmount(Long.parseLong(request.getParameter("ammount")));
 		dao.save(prescription);
-		return prescription;
 	}
 }
