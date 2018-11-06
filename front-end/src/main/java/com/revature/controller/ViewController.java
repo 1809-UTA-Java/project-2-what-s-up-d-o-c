@@ -3,10 +3,10 @@ package com.revature.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -100,8 +100,8 @@ public class ViewController {
 		}
 	}
 	
-	 @RequestMapping("/new/presciptions")
-	 public void prescriptions(@RequestBody ArrayList<Prescription> prescriptions, HttpServletResponse resp, HttpServletRequest req) {
+	 @RequestMapping(value = "/new/prescriptions", method = RequestMethod.POST)
+	 public void getPrescriptions(@RequestBody List<Prescription> prescriptions, HttpServletResponse resp, HttpServletRequest req) {
 	 // add prescriptions here
 		 resp.setContentType("text/html");
 

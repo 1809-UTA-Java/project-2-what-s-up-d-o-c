@@ -60,7 +60,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
 	<flow name="session-varaibles-muleFlow">
 		<set-session-variable variableName="userID"
 			value="1" doc:name="User ID" />
-        <set-session-variable variableName="user" value="patientHomeView" doc:name="View"/>
+        <set-session-variable variableName="user" value="doctorHomeView" doc:name="View"/>
 	</flow>
 	<flow name="login-muleFlow">
 		<http:listener config-ref="HTTP_Listener_Configuration3"
@@ -129,7 +129,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
 					path="/prescription/patient/#[sessionVars.userID]" method="GET"
 					doc:name="Prescriptions Table Call" />
 				<http:request config-ref="HTTP_Request_Configuration14"
-					path="/new/prescriptions" method="GET, POST" doc:name="Prescriptions HTML" />
+					path="/new/prescriptions" method="POST" doc:name="Prescriptions HTML" />
 			</when>
             <when expression="#[sessionVars.pageName == 'ViewAppointments']">
                 <flow-ref name="session-varaibles-muleFlow" doc:name="Flow Reference"/>
