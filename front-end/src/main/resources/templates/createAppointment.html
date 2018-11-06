@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Appointment Form</title>
 </head>
 <body>
 	<form action="http://localhost:8200/appointments/saveAppointment" method="post">
 		<table>
 			<tr>
 				<td>Doctor</td>
-						<td><select>
+						<td><select name="doctorID">
 						<option value="1">Dr. Mehrab</option>
 						<option value="2">Dr. Daria</option>
 						<option value="3">Dr. Su</option>
@@ -24,17 +24,12 @@
 			</tr>
 			<tr>
 				<td>Patient Id</td>
-				<td><input type="number" id="patientID"/></td>
+				<td><input type="number" name="patientID" id="patientID"/></td>
 			</tr>
-			<!--  
 			<tr>
-				<td>Appointment Time</td>
-				<td><select th:field="*{dateAndTime}">
-						<option th:each="optionTime : ${optionTimes}"
-							th:value="${optionTime}" th:text="${availTime}">Wireframe</option>
-				</select></td>
+				<td>Appointment Date & Time</td>
+					<td><input type="datetime-local" name="timeAndDate"></td>
 			</tr>
-			-->
 		</table>
 		<input type="submit" value="Submit" />
 	</form>

@@ -2,22 +2,22 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Prescription Form</title>
 </head>
 <body>
 	<form action="http://localhost:8056/prescription/new/submit" method="post">
 		<table>
 			<tr>
 				<td>Patient Id</td>
-				<td><input type="number" id="patientID"/></td>
+				<td><input type="number" name="patientID" id="patientID"/></td>
 			</tr>
 			<tr>
 				<td>Doctor Id</td>
-				<td><input type="number" id="doctorID"/></td>
+				<td><input type="number" name="doctorID" id="doctorID"/></td>
 			</tr>
 			<tr>
 				<td>Prescribed Drug</td>
-				<td><select id="drugID">
+				<td><select name="drugID" id="drugID">
 						<option value="1">Vicodin</option>
 						<option value="2">Synthroid</option>
 						<option value="3">Delasone</option>
@@ -32,7 +32,7 @@
 			</tr>
 			<tr>
 				<td>Prescribed Amount (milligrams)</td>
-				<td><input type="number" id="ammount"/></td>
+				<td><input type="number" name="ammount" id="ammount"/></td>
 			</tr>
 		</table>
 		<input type="submit" value="Submit" />

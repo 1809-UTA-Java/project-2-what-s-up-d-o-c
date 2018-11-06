@@ -1,8 +1,11 @@
 package com.revature.prescription.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,12 +40,19 @@ public class PrescriptionController {
 	}
 
 	@RequestMapping("/prescription/new/submit")
-	public void newPrescription(HttpServletRequest request) {
+	public void newPrescription(HttpServletRequest request, HttpServletResponse response) {
 		Prescription prescription = new Prescription();
 		prescription.setDoctorID(Long.parseLong(request.getParameter("doctorID")));
 		prescription.setPatientID(Long.parseLong(request.getParameter("patientID")));
 		prescription.setDrugID(Long.parseLong(request.getParameter("drugID")));
 		prescription.setAmmount(Long.parseLong(request.getParameter("ammount")));
 		dao.save(prescription);
+		
+		try {
+			response.sendRedirect("http://localhost:8020/");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
