@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,13 +47,27 @@ public class ViewController {
 	public String login(HttpServletRequest req, HttpServletResponse resp) {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
-		
+				
 		if (req.getParameter("role").contentEquals("doctor")) {
-			resp.setHeader("userID", "" + ddao.findByUsername(username).getId());
-			return ddao.existsByUsernameAndPassword(username, password) ? "doctorHomeView" : "redirect:loginView";
+			boolean exists = ddao.existsByUsernameAndPassword(username, password);
+			
+			if (exists) {
+				resp.setHeader("userID","" + ddao.findByUsername(username).getId());
+				resp.setHeader("view","" + "doctorHomeView");
+				return "redirect:http://localhost:8020";
+			} else {
+				return "redirect:loginView";
+			}
 		} else {
-			resp.setHeader("userID", "" + pdao.findByUsername(username).getId());
-			return pdao.existsByUsernameAndPassword(username, password) ? "patientHomeView" : "redirect:loginView";
+			boolean exists = pdao.existsByUsernameAndPassword(username, password);
+			
+			if (exists) {
+				resp.setHeader("userID", "" + pdao.findByUsername(username).getId());
+				resp.setHeader("view","" + "patientHomeView");
+				return "redirect:http://localhost:8020";
+			} else {
+				return "redirect:loginView";
+			}
 		}
 	}
 
@@ -120,7 +135,7 @@ public class ViewController {
 			}
 	 }
 
-	@RequestMapping("writePrescription")
+	@RequestMapping("/writePrescription")
 	public String createPrescription() {
 		return "createPrescription";
 	}

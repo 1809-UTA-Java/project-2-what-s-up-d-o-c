@@ -36,7 +36,7 @@ public class Prescription {
 	}
 
 	public Prescription() {
-		// TODO Auto-generated constructor stub
+		this.status = "Prescribed";
 	}
 
 	@Column(name = "DRUGS_ID")

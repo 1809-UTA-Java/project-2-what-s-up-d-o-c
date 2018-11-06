@@ -5,16 +5,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="#" th:action="@{/8200/appointments}"
-		th:object="${appointment}" method="post">
+	<form action="http://localhost:8056/prescription/submit" method="post"/>
 		<table>
 			<tr>
 				<td>Doctor</td>
-				<td><select th:field="*{doctorID}">
-						<option th:each="doctor : ${doctors}" th:value="${doctor.getId()}"
-							th:text="Dr. ${doctor.getFirstName()} ${doctor.getLastName()}"></option>
+						<td><select>
+						<option value="1">Dr. Mehrab</option>
+						<option value="2">Dr. Daria</option>
+						<option value="3">Dr. Su</option>
+						<option value="4">Dr. Brian</option>
+						<option value="5">Dr. Nanda</option>
+						<option value="6">Dr. Lorem</option>
+						<option value="7">Dr. Timothy</option>
+						<option value="8">Dr. David</option>
+						<option value="9">Dr. Joseph </option>
+						<option value="10">Dr. Another</option>
 				</select></td>
 			</tr>
+			<!--  
 			<tr>
 				<td>Appointment Time</td>
 				<td><select th:field="*{dateAndTime}">
@@ -22,6 +30,7 @@
 							th:value="${optionTime}" th:text="${availTime}">Wireframe</option>
 				</select></td>
 			</tr>
+			-->
 			<tr>
 				<td><input type="text" th:field="*{patientID} th:value=" ${}" disabled"/></td>
 			</tr>

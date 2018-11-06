@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="http://localhost:8056" method="post">
+	<form action="http://localhost:8056/prescription/new/submit" method="post">
 		<table>
 			<tr>
-				<td>Patient</td>
-				<td><input type="text"/></td>
+				<td>Patient Id</td>
+				<td><input type="number" id="patientID"/></td>
+			</tr>
+			<tr>
+				<td>Doctor Id</td>
+				<td><input type="number" id="doctorID"/></td>
 			</tr>
 			<tr>
 				<td>Prescribed Drug</td>
-				<td><select>
+				<td><select id="drugID">
 						<option value="1">Vicodin</option>
 						<option value="2">Synthroid</option>
 						<option value="3">Delasone</option>
@@ -27,8 +31,8 @@
 				</select></td>
 			</tr>
 			<tr>
-				<td>Prescribed Amount</td>
-				<td><input type="number" th:field="*{patientID}"/></td>
+				<td>Prescribed Amount (milligrams)</td>
+				<td><input type="number" id="ammount"/></td>
 			</tr>
 		</table>
 		<input type="submit" value="Submit" />

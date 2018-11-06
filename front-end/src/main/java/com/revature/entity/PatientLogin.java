@@ -11,7 +11,9 @@ public class PatientLogin {
 	@Id
 	@Column(name = "PL_ID")
 	private int id;
+	@Column(name="PL_USERNAME")
 	private String username;
+	@Column(name="PL_PASSWORD")
 	private String password;
 
 	public PatientLogin(int id, String username, String password) {

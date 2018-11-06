@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.prescription.entity.Prescription;
@@ -25,10 +26,10 @@ public class PrescriptionController {
 		return dao.findAllByStatus("Prescribed");
 	}
 	
-	@GetMapping("/prescription/{id}")
-	public Prescription getById(@PathVariable("id") long id){
-		return dao.findByPrescriptionID(id);
-	}
+//	@GetMapping("/prescription/{id}")
+//	public Prescription getById(@PathVariable("id") long id){
+//		return dao.findByPrescriptionID(id);
+//	}
 	
 	@GetMapping("/prescription/doctor/{id}")
 	public Prescription getByDoctorId(@PathVariable("id") long id){
@@ -53,14 +54,13 @@ public class PrescriptionController {
 		}
 	}
 	
-	@PostMapping("/prescription/submit")
-	public Prescription newPrescription(HttpServletRequest request){
+	@RequestMapping(value = "/prescription/new/submit", method=RequestMethod.POST)
+	public void newPrescription(HttpServletRequest request){
 		Prescription prescription = new Prescription();
-		prescription.setDoctorID(Integer.getInteger(request.getParameter("doctorID")));
-		prescription.setPatientID(Integer.getInteger(request.getParameter("patientID")));
-		prescription.setDrugID(Integer.getInteger(request.getParameter("drugID")));
-		prescription.setAmmount(Integer.getInteger(request.getParameter("ammount")));
+		prescription.setDoctorID(Long.parseLong(request.getParameter("doctorID")));
+		prescription.setPatientID(Long.parseLong(request.getParameter("patientID")));
+		prescription.setDrugID(Long.parseLong(request.getParameter("drugID")));
+		prescription.setAmmount(Long.parseLong(request.getParameter("ammount")));
 		dao.save(prescription);
-		return prescription;
 	}
 }

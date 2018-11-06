@@ -26,6 +26,12 @@ public class Prescription {
 	@Column(name = "STATUS")
 	String status;
 	
+	@Column(name = "DRUGS_ID")
+	long drugID;
+	
+	@Column(name = "AMMOUNT")
+	long ammount;
+	
 	public Prescription(long patientID, long doctorID, long drugID, long ammount) {
 		super();
 		this.patientID = patientID;
@@ -38,12 +44,6 @@ public class Prescription {
 	public Prescription() {
 		// TODO Auto-generated constructor stub
 	}
-
-	@Column(name = "DRUGS_ID")
-	long drugID;
-	
-	@Column(name = "AMMOUNT")
-	long ammount;
 
 	public long getPrescriptionID() {
 		return prescriptionID;
