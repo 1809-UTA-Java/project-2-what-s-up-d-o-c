@@ -55,10 +55,12 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
     <http:request-config name="HTTP_Request_Configuration15" host="localhost" port="8080" doc:name="HTTP Request Configuration"/>
     <http:request-config name="HTTP_Request_Configuration16" host="localhost" port="8080" doc:name="HTTP Request Configuration"/>
     <http:listener-config name="HTTP_Listener_Configuration4" host="0.0.0.0" port="8020" doc:name="HTTP Listener Configuration"/>
+    <http:request-config name="HTTP_Request_Configuration17" host="localhost" port="8200" doc:name="HTTP Request Configuration"/>
+    <http:request-config name="HTTP_Request_Configuration18" host="localhost" port="8080" doc:name="HTTP Request Configuration"/>
 	<flow name="session-varaibles-muleFlow">
 		<set-session-variable variableName="userID"
 			value="1" doc:name="User ID" />
-        <set-session-variable variableName="user" value="doctorHomeView" doc:name="View"/>
+        <set-session-variable variableName="user" value="patientHomeView" doc:name="View"/>
 	</flow>
 	<flow name="login-muleFlow">
 		<http:listener config-ref="HTTP_Listener_Configuration3"
@@ -111,7 +113,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
 	<flow name="patient-story-muleFlow">
 		<http:listener config-ref="HTTP_Listener_Configuration2"
 			path="/" allowedMethods="GET" doc:name="HTTP" />
-		<set-session-variable variableName="patientPage"
+		<set-session-variable variableName="pageName"
 			value="#[message.inboundProperties.'http.query.params'.page]"
 			doc:name="Patient Home Page" />
 		<logger message="Patient Page: #[sessionVars.patientPage]"
@@ -129,6 +131,11 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
 				<http:request config-ref="HTTP_Request_Configuration14"
 					path="/prescriptions" method="GET" doc:name="Prescriptions HTML" />
 			</when>
+            <when expression="#[sessionVars.pageName == 'ViewAppointments']">
+                <flow-ref name="session-varaibles-muleFlow" doc:name="Flow Reference"/>
+                <http:request config-ref="HTTP_Request_Configuration17" path="/appointments/getPatientApps/#[sessionVars.userID]" method="GET" doc:name="Appointments Table Call"/>
+                <http:request config-ref="HTTP_Request_Configuration18" path="/doctor/#[sessionVars.userID]/viewAppointments" method="POST" doc:name="Appointments HTML"/>
+            </when>
 		</choice>
 	</flow>
 

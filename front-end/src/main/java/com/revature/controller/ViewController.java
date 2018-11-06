@@ -75,16 +75,7 @@ public class ViewController {
 	public String appointmentForm() {
 		return "createAppointment";
 	}
-
-	// @RequestMapping("/patient/{id}/viewAppointments")
-	// public String patientAppointmetns(Model model, @PathVariable("id") int
-	// id) {
-	// // add appointment here
-	// model.addAllAttributes("appointments",
-	// "http://localhost:8200/appointments/get/" + id);
-	// return "appointment/list";
-	// }
-	//
+	
 	@RequestMapping(value = "/doctor/{id}/viewAppointments", method = RequestMethod.POST)
 	public void doctorAppointments(@RequestBody ArrayList<Appointment> appointments, HttpServletResponse resp) {
 		// add appointment here

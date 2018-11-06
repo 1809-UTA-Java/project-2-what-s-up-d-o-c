@@ -1,6 +1,6 @@
 package com.revature.prescription.repository;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,9 +12,9 @@ public interface PrescriptionDao extends JpaRepository<Prescription,Long> {
 
 	Prescription findByPrescriptionID(long id);
 	
-	ArrayList<Prescription> findAllByStatus(String status);
+	List<Prescription> findAllByStatus(String status);
 
-	Prescription findByDoctorID(long id);
+	List<Prescription> findByDoctorID(long id);
 
-	Prescription findByPatientID(long id);
+	List<Prescription> findByPatientID(long id);
 }

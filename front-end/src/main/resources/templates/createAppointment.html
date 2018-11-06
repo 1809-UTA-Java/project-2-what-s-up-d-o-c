@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="http://localhost:8056/prescription/submit" method="post"/>
+	<form action="http://localhost:8200/appointments/saveAppointment" method="post">
 		<table>
 			<tr>
 				<td>Doctor</td>
@@ -22,6 +22,10 @@
 						<option value="10">Dr. Another</option>
 				</select></td>
 			</tr>
+			<tr>
+				<td>Patient Id</td>
+				<td><input type="number" id="patientID"/></td>
+			</tr>
 			<!--  
 			<tr>
 				<td>Appointment Time</td>
@@ -31,9 +35,6 @@
 				</select></td>
 			</tr>
 			-->
-			<tr>
-				<td><input type="text" th:field="*{patientID} th:value=" ${}" disabled"/></td>
-			</tr>
 		</table>
 		<input type="submit" value="Submit" />
 	</form>

@@ -1,6 +1,6 @@
 package com.revature.prescription.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,7 +22,7 @@ public class PrescriptionController {
 	PrescriptionDao dao;
 	
 	@GetMapping("/prescription/Prescribed")
-	public ArrayList<Prescription> getPrescribed(){
+	public List<Prescription> getPrescribed(){
 		return dao.findAllByStatus("Prescribed");
 	}
 	
@@ -32,12 +32,12 @@ public class PrescriptionController {
 //	}
 	
 	@GetMapping("/prescription/doctor/{id}")
-	public Prescription getByDoctorId(@PathVariable("id") long id){
+	public List<Prescription> getByDoctorId(@PathVariable("id") long id){
 		return dao.findByDoctorID(id);
 	}
 	
 	@GetMapping("/prescription/patient/{id}")
-	public Prescription getByPatientId(@PathVariable("id") long id){
+	public List<Prescription> getByPatientId(@PathVariable("id") long id){
 		return dao.findByPatientID(id);
 	}
 	
